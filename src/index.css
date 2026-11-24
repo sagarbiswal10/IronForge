@@ -1,0 +1,151 @@
+@import "tailwindcss";
+
+@theme {
+  --font-display: "Anton", Impact, "Arial Narrow", sans-serif;
+  --font-sans: "DM Sans", ui-sans-serif, system-ui, sans-serif;
+  --font-mono: "JetBrains Mono", ui-monospace, SFMono-Regular, monospace;
+
+  --color-obsidian: #080808;
+  --color-obsidian-elevated: #111111;
+  --color-obsidian-card: #141414;
+  --color-forge: #FF4D1C;
+  --color-forge-hover: #E53E10;
+}
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+    background-color: #080808;
+    color: #ffffff;
+    font-family: var(--font-sans);
+    overflow-x: clip;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    html {
+      scroll-behavior: auto;
+    }
+  }
+
+  body {
+    overflow-x: clip;
+  }
+}
+
+.font-display {
+  font-family: var(--font-display);
+  letter-spacing: 0.015em;
+}
+
+.text-stroke-iron {
+  color: transparent;
+  -webkit-text-stroke: 1.5px rgba(255, 255, 255, 0.36);
+}
+
+@media (max-width: 640px) {
+  .text-stroke-iron {
+    -webkit-text-stroke: 1.1px rgba(255, 255, 255, 0.42);
+  }
+}
+
+.hero-grid-bg {
+  background-image: linear-gradient(
+    to right,
+    rgba(255, 255, 255, 0.03) 1px,
+    transparent 1px
+  );
+  background-size: 25% 100%;
+}
+
+.section-contain {
+  contain: layout style;
+}
+
+@keyframes kinetic-marquee-left {
+  0% {
+    transform: translate3d(0, 0, 0);
+  }
+  100% {
+    transform: translate3d(-50%, 0, 0);
+  }
+}
+
+@keyframes kinetic-marquee-right {
+  0% {
+    transform: translate3d(-50%, 0, 0);
+  }
+  100% {
+    transform: translate3d(0, 0, 0);
+  }
+}
+
+@keyframes kinetic-star-spin {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes kinetic-star-pulse {
+  0%,
+  100% {
+    transform: scale(1) rotate(0deg);
+  }
+  50% {
+    transform: scale(1.18) rotate(22.5deg);
+  }
+}
+
+@keyframes kinetic-sheen-sweep {
+  0% {
+    transform: translate3d(-120%, 0, 0) skewX(-22deg);
+  }
+  100% {
+    transform: translate3d(260%, 0, 0) skewX(-22deg);
+  }
+}
+
+.animate-kinetic-left {
+  animation: kinetic-marquee-left var(--marquee-duration, 28s) linear infinite;
+  will-change: transform;
+}
+
+.animate-kinetic-right {
+  animation: kinetic-marquee-right var(--marquee-duration, 30s) linear infinite;
+  will-change: transform;
+}
+
+.animate-kinetic-star-spin {
+  animation: kinetic-star-spin 11s linear infinite;
+}
+
+.animate-kinetic-star-spin-reverse {
+  animation: kinetic-star-spin 13s linear infinite reverse;
+}
+
+.animate-kinetic-star-pulse {
+  animation: kinetic-star-pulse 3.4s ease-in-out infinite;
+}
+
+.animate-kinetic-sheen {
+  animation: kinetic-sheen-sweep 5.2s cubic-bezier(0.22, 1, 0.36, 1) infinite;
+  will-change: transform;
+}
+
+.kinetic-ribbon-hover:hover .animate-kinetic-left,
+.kinetic-ribbon-hover:hover .animate-kinetic-right {
+  animation-play-state: paused;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .animate-kinetic-left,
+  .animate-kinetic-right,
+  .animate-kinetic-star-spin,
+  .animate-kinetic-star-spin-reverse,
+  .animate-kinetic-star-pulse,
+  .animate-kinetic-sheen {
+    animation: none !important;
+  }
+}
